@@ -2,16 +2,17 @@
   "name": "technotes-mern",
   "version": "1.0.0",
   "description": "TechNotes MERN Project by Dave Gray",
-  "main": "backend/server.js",
+  "main": "server.ts",
   "scripts": {
-    "start": "node backend/server",
-    "dev": "node --watch backend/server"
+    "start": "node server.ts",
+    "dev": "node --watch server.ts"
   },
   "keywords": [],
   "type": "module",
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/express": "^5.0.0",
     "dotenv": "^16.4.7",
     "express": "^4.21.2"
   }
