@@ -2,14 +2,18 @@ import express from "express";
 import type { Request, Response } from "express";
 import path from "path";
 import dotenv from "dotenv";
-import root from "./routes/root.ts";
-import errorHandler from "./middleware/errorHandler.ts";
-import cookieParser from "cookie-parser";
 import cors from "cors";
+import cookieParser from "cookie-parser";
+import mongoose from "mongoose";
+
 import corsOptions from "./config/corsOptions.ts";
 import connectDB from "./config/dbConn.ts";
-import mongoose from "mongoose";
+
+import errorHandler from "./middleware/errorHandler.ts";
 import { logger, logEvents } from "./middleware/logger.ts";
+
+import root from "./routes/root.route.ts";
+import userRoutes from "./routes/user.routes.ts";
 
 dotenv.config();
 connectDB();
@@ -25,6 +29,7 @@ app.use("/", express.static(path.join(__dirname, "public")));
 // express.static is a built-in middleware function in Express. It serves static files and is based on serve-static.
 // shortend version of app.use(express.static('public'));
 app.use("/", root);
+app.use("/users", userRoutes);
 app.all("*", (req: Request, res: Response) => {
 	res.status(404);
 	if (req.accepts("html")) {
