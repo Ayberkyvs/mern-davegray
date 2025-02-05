@@ -1,7 +1,7 @@
 import type { EntityId } from "@reduxjs/toolkit";
 
 export interface UserType {
-	id: EntityId;
+	id: EntityId | number;
 	username: string;
 	roles: string[];
 	active: boolean;
